@@ -4,7 +4,7 @@ import './Task.css'
 
 class Task extends Component {
 
-  onChange = () => {
+  handleChange = () => {
     const { completeTask, id } = this.props
 
     completeTask(id)
@@ -21,8 +21,8 @@ class Task extends Component {
 
     return (
       <div className='task'>
-        {content}
-        <input type='checkbox' onChange={this.onChange} checked={isCompleted} />
+        <span className={isCompleted ? 'success' : ''} >{content}</span>
+        <input type='checkbox' onChange={this.handleChange} checked={isCompleted} />
         <button
           type='button'
           onClick={this.handleClick}

@@ -16,7 +16,7 @@ class App extends Component {
     const newTask = { id: +new Date(), content: text, isCompleted: false }
     const updatedTasks = [...tasks, newTask]
 
-    this.setState({ tasks: updatedTasks })
+    this.setState({ tasks: updatedTasks }, this.saveTasks)
   }
 
   deleteTask = id => {
@@ -24,21 +24,31 @@ class App extends Component {
 
     const updatedTasks = tasks.filter(task => task.id !== id)
 
-    this.setState({ tasks: updatedTasks })
+    this.setState({ tasks: updatedTasks }, this.saveTasks)
   }
 
   completeTask = id => {
     const { tasks } = this.state
-    
-    const index = tasks.findIndex( task => task.id === id)
-    
-    tasks[index].isCompleted = !tasks[index].isCompleted
 
-    this.setState({ tasks })
+    const updatedTasks = [...tasks]
+    const index = updatedTasks.findIndex( task => task.id === id)
+    
+    updatedTasks[index].isCompleted = !updatedTasks[index].isCompleted
+
+    this.setState({ tasks: updatedTasks }, this.saveTasks)
   }
+
+  saveTasks = () => localStorage.setItem('tasks', JSON.stringify(this.state.tasks))
+
+
   /*
   completeTask = id => {
     const { tasks } = this.state
+
+        const checkedTasks = tasks.map(task =>
+          task.id === id ? ({ ...task, isCompleted: !task.isCompleted }) : task
+        )
+
 
     const checkedTasks = tasks.map(task => {
       if (task.id === id) {
