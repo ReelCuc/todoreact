@@ -7,7 +7,8 @@ import './App.css'
 
 class App extends Component {
   state = {
-    tasks: [{ id: 1, content: 'zh', isCompleted: false }]
+    tasks: [{ id: 1, content: 'zh', isCompleted: false }],
+    filter: 'whole'
   }
 
   addTask = text => {
@@ -40,8 +41,34 @@ class App extends Component {
 
   saveTasks = () => localStorage.setItem('tasks', JSON.stringify(this.state.tasks))
 
+  loadTasks = () => {
+    const data = JSON.parse(localStorage.getItem('tasks'))
 
-  /*
+    this.setState({ tasks: data })
+  }
+
+  setFilter = filter => this.setState({ filter })
+
+
+  render() {
+    const { tasks, filter } = this.state
+
+    return (
+      <div className='block'>
+        <Control addTask={this.addTask} filter={filter} setFilter={this.setFilter} />
+        <List deleteTask={this.deleteTask} completeTask={this.completeTask} tasks={tasks} filter={filter} />
+      </div>
+    )
+  }
+}
+
+export { App }
+
+
+
+
+
+/*
   completeTask = id => {
     const { tasks } = this.state
 
@@ -59,9 +86,7 @@ class App extends Component {
 
     this.setState({ tasks: checkedTasks })
   }
-  */
 
-  /*
   deleteTask = id => {
     const { tasks } = this.state
 
@@ -70,16 +95,3 @@ class App extends Component {
     this.setState({ tasks })
   }
   */
-  render() {
-    const { tasks } = this.state
-
-    return (
-      <div className='block'>
-        <Control addTask={this.addTask} />
-        <List deleteTask={this.deleteTask} completeTask={this.completeTask} tasks={tasks} />
-      </div>
-    )
-  }
-}
-
-export { App }

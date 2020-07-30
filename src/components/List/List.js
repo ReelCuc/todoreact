@@ -5,8 +5,27 @@ import { Task } from '../Task/Task'
 import './List.css'
 
 class List extends Component {
+  filterTasks = () => {
+    const { tasks, filter } = this.props
+
+    let filterFn = () => true
+
+    switch (filter) {
+      case 'complete':
+        filterFn = task => task.isCompleted
+        break
+      case 'uncomplete':
+        filterFn = task => !task.isCompleted
+        break
+    }
+
+    return tasks.filter(filterFn)
+  }
+
   render() {
-    const { tasks, deleteTask, completeTask } = this.props
+    const { deleteTask, completeTask } = this.props
+
+    const tasks = this.filterTasks()
 
     return (
       <div className='list'>
