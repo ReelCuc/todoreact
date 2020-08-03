@@ -11,10 +11,10 @@ class List extends Component {
     let filterFn = () => true
 
     switch (filter) {
-      case 'complete':
+      case 'done':
         filterFn = task => task.isCompleted
         break
-      case 'uncomplete':
+      case 'incomplete':
         filterFn = task => !task.isCompleted
         break
     }

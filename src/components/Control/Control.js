@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Button, ButtonGroup, ToggleButton, Form } from 'react-bootstrap'
 
 import './Control.css'
 
@@ -36,50 +37,51 @@ class Control extends Component {
 
     return (
       <div className='control'>
-        <input
+        <Form.Control
+          classname='mb-2'
+          id='inlineFormInput'
           placeholder='Введи задачу'
-          className='field'
           onChange={this.handleChange}
           onKeyDown={this.handleKeyDown}
           value={inputValue}
         />
-        <button
-          className='add'
-          type='button'
+
+        <Button
+          variant='info'
           onClick={this.handleClick}
-        >
+          >
           +
-        </button>
-        <label>
-          <input
-          value='whole'
-          checked={filter === 'whole'}
-          onChange={this.handleFilterChange}
-          className='filter'
-          type='radio'
-          />
-          All todos
-        </label>
-        <label>
-          <input
-          value='complete'
-          checked={filter === 'complete'}
-          onChange={this.handleFilterChange}
-          className='filter'
-          type='radio'
-          />
-          complete todos
-        </label>
-        <label>
-          <input
-          value='uncomplete'
-          checked={filter === 'uncomplete'}
-          onChange={this.handleFilterChange}
-          className='filter'
-          type='radio'
-          />
-          uncompleted todos
-        </label>
+        </Button>
+
+        <ButtonGroup toggle>
+          <ToggleButton
+            type='radio'
+            variant='outline-secondary'
+            value='whole'
+            checked={filter === 'whole'}
+            onChange={this.handleFilterChange}
+            >
+            All
+          </ToggleButton>
+          <ToggleButton
+            type='radio'
+            variant='outline-secondary'
+            value='done'
+            checked={filter === 'done'}
+            onChange={this.handleFilterChange}
+            >
+            done
+          </ToggleButton>
+          <ToggleButton
+            type='radio'
+            variant='outline-secondary'
+            value='incomplete'
+            checked={filter === 'incomplete'}
+            onChange={this.handleFilterChange}
+            >
+            incomplete
+          </ToggleButton>
+        </ButtonGroup>
       </div>
     )
   }

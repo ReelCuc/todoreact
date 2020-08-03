@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Button } from 'react-bootstrap'
 
 import './Task.css'
 
@@ -23,12 +24,13 @@ class Task extends Component {
       <div className='task'>
         <span className={isCompleted ? 'success' : ''} >{content}</span>
         <input type='checkbox' onChange={this.handleChange} checked={isCompleted} />
-        <button
-          type='button'
+        <Button
+          variant='outline-light'
           onClick={this.handleClick}
+          size='sm'
         >
-        x
-        </button>
+        ×
+        </Button>
       </div>
     )
   }

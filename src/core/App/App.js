@@ -3,11 +3,12 @@ import React, { Component } from 'react'
 import { Control } from '../../components/Control/Control'
 import { List } from '../../components/List/List'
 
+
 import './App.css'
 
 class App extends Component {
   state = {
-    tasks: [{ id: 1, content: 'zh', isCompleted: false }],
+    tasks: JSON.parse(localStorage.getItem('tasks')) || [],
     filter: 'whole'
   }
 
@@ -40,12 +41,6 @@ class App extends Component {
   }
 
   saveTasks = () => localStorage.setItem('tasks', JSON.stringify(this.state.tasks))
-
-  loadTasks = () => {
-    const data = JSON.parse(localStorage.getItem('tasks'))
-
-    this.setState({ tasks: data })
-  }
 
   setFilter = filter => this.setState({ filter })
 
