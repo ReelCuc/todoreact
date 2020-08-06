@@ -38,8 +38,7 @@ class Control extends Component {
     return (
       <div className='control'>
         <Form.Control
-          classname='mb-2'
-          id='inlineFormInput'
+          className='input'
           placeholder='Введи задачу'
           onChange={this.handleChange}
           onKeyDown={this.handleKeyDown}
@@ -47,13 +46,14 @@ class Control extends Component {
         />
 
         <Button
+          className='addbtn'
           variant='info'
           onClick={this.handleClick}
           >
           +
         </Button>
 
-        <ButtonGroup toggle>
+        <ButtonGroup toggle className='filter'>
           <ToggleButton
             type='radio'
             variant='outline-secondary'
@@ -70,7 +70,7 @@ class Control extends Component {
             checked={filter === 'done'}
             onChange={this.handleFilterChange}
             >
-            done
+            Done
           </ToggleButton>
           <ToggleButton
             type='radio'
@@ -79,7 +79,7 @@ class Control extends Component {
             checked={filter === 'incomplete'}
             onChange={this.handleFilterChange}
             >
-            incomplete
+            Incomplete
           </ToggleButton>
         </ButtonGroup>
       </div>

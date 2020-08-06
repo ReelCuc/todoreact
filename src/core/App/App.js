@@ -50,6 +50,7 @@ class App extends Component {
 
     return (
       <div className='block'>
+        <h3>Do ur thing and get the hell out of here</h3>
         <Control addTask={this.addTask} filter={filter} setFilter={this.setFilter} />
         <List deleteTask={this.deleteTask} completeTask={this.completeTask} tasks={tasks} filter={filter} />
       </div>

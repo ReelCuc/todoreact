@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button } from 'react-bootstrap'
+import { Button, ToggleButton } from 'react-bootstrap'
 
 import './Task.css'
 
@@ -17,20 +17,40 @@ class Task extends Component {
     deleteTask(id)
   }
 
+  buttonName = () => {
+    const { isCompleted } = this.props
+
+    const checkName={isCompleted ? 'Done' : 'To do'}
+  }
+
   render() {
     const { id, content, isCompleted } = this.props
 
     return (
       <div className='task'>
+
         <span className={isCompleted ? 'success' : ''} >{content}</span>
-        <input type='checkbox' onChange={this.handleChange} checked={isCompleted} />
+
+        <div className='bitns'>
+        <ToggleButton
+          type="checkbox"
+          variant="outline-success"
+          checked={isCompleted}
+          onChange={this.handleChange}
+          size='sm'
+          className='checkbox'
+        >
+          
+        </ToggleButton>
+
         <Button
-          variant='outline-light'
+          variant='outline-dark'
           onClick={this.handleClick}
           size='sm'
         >
-        ×
+          ×
         </Button>
+        </div>
       </div>
     )
   }
