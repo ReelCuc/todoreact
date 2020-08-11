@@ -17,12 +17,6 @@ class Task extends Component {
     deleteTask(id)
   }
 
-  buttonName = () => {
-    const { isCompleted } = this.props
-
-    const checkName={isCompleted ? 'Done' : 'To do'}
-  }
-
   render() {
     const { id, content, isCompleted } = this.props
 
@@ -40,7 +34,7 @@ class Task extends Component {
           size='sm'
           className='checkbox'
         >
-          
+          Done
         </ToggleButton>
 
         <Button
