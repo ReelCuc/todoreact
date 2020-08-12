@@ -17,6 +17,7 @@ class List extends Component {
       case 'incomplete':
         filterFn = task => !task.isCompleted
         break
+        // MINOR: у switch всегда должен быть default кейс
     }
 
     return tasks.filter(filterFn)
@@ -25,7 +26,7 @@ class List extends Component {
   render() {
     const { deleteTask, completeTask } = this.props
 
-    const tasks = this.filterTasks()
+    const tasks = this.filterTasks() //AVG+: useMemo or memoize-one
 
     return (
       <div className='list'>

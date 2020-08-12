@@ -3,7 +3,7 @@ import { Button, ButtonGroup, ToggleButton, Form } from 'react-bootstrap'
 
 import './Control.css'
 
-class Control extends Component {
+class Control extends Component { // AVG: Название можно сделать более понятным, например SearchPanel
   state = {
     inputValue: ''
   }
@@ -23,7 +23,7 @@ class Control extends Component {
     if (this.state.inputValue !== '') { 
       addTask(this.state.inputValue)
     }
-    this.setState({ inputValue: '' }) 
+    this.setState({ inputValue: '' }) // AVG: Лучше засунуть это в if выше, чтобы при пустом инпуте не менялся стейт на один и тот же
   }
 
   handleFilterChange = event => {
@@ -35,6 +35,7 @@ class Control extends Component {
     const { inputValue } = this.state
     const { filter } = this.props
 
+    // AVG: фильтры, опять-таки, лучше хранить в константах
     return (
       <div className='control'>
         <Form.Control
@@ -86,5 +87,7 @@ class Control extends Component {
     )
   }
 }
+
+// где проптайпсы ммм??
 
 export { Control }

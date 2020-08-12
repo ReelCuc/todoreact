@@ -1,22 +1,23 @@
 import React, { Component } from 'react'
+// MINOR: следи за пробелами, отступами, точками с запятой и тд
 
 import { Control } from '../../components/Control/Control'
 import { List } from '../../components/List/List'
-
 
 import './App.css'
 
 class App extends Component {
   state = {
-    tasks: JSON.parse(localStorage.getItem('tasks')) || [],
-    filter: 'whole'
+    tasks: JSON.parse(localStorage.getItem('tasks')) || [], // AVG: "магическая" строка, лучше все строковые и числовые литералы помещать в константы
+    filter: 'whole' // AVG: "магическая" строка, лучше все строковые и числовые литералы помещать в константы
   }
 
+  // MINOR: советую сразу привыкнуть хэндлеры называть с приставкой handle, например: handleTaskAdd, handleTaskDelete, handleTaskComplete
   addTask = text => {
     const { tasks } = this.state
 
-    const newTask = { id: +new Date(), content: text, isCompleted: false }
-    const updatedTasks = [...tasks, newTask]
+    const newTask = { id: +new Date(), content: text, isCompleted: false } // MINOR: Лучше явный тайп кастинг: Number(newDate()) // FYI: на проде айдишники так не формируй
+    const updatedTasks = [...tasks, newTask] // MINOR-: Логичнее новый таск добавлять в начало списка, а не в конец
 
     this.setState({ tasks: updatedTasks }, this.saveTasks)
   }
@@ -35,7 +36,8 @@ class App extends Component {
     const updatedTasks = [...tasks]
     const index = updatedTasks.findIndex( task => task.id === id)
     
-    updatedTasks[index].isCompleted = !updatedTasks[index].isCompleted
+    updatedTasks[index].isCompleted = !updatedTasks[index].isCompleted  // MAJOR: Мутируется state
+    // updatedTasks[index] = { ...updatedTasks[index], isCompleted: !updatedTasks[index].isCompleted };
 
     this.setState({ tasks: updatedTasks }, this.saveTasks)
   }
@@ -48,6 +50,8 @@ class App extends Component {
   render() {
     const { tasks, filter } = this.state
 
+    // MAJOR: неразбериха с классами, все классы находятся в общей зоне видимости
+    // MINOR: лучше все функции-пропсы называть с приставкой on, например onTaskDelete, onTaskComplete, onSetFilter, onTaskAdd
     return (
       <div className='block'>
         <h3>Do ur thing and get the hell out of here</h3>
