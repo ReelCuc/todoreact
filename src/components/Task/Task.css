@@ -4,7 +4,7 @@
   margin: 2px;
   padding: 10px;
   display: flex;
-  align-items: baseline;
+  align-items: baseline; /* впервые в жизни вижу baseline))))) */
   justify-content: space-between;
 }
 
